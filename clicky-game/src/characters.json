@@ -58,5 +58,17 @@
         "name": "Melisandre",
         "image": "https://s3.r29static.com/bin/entry/d7b/720x864,85/2171631/image.webp",
         "clicked": false
+    },
+    {
+      "id": 11,
+      "name": "Ellaria",
+      "image": "https://i.pinimg.com/originals/d9/e0/92/d9e092ce332cf9690eb157e217953897.png",
+      "clicked": false
+    },
+    {
+      "id": 12,
+      "name": "Catelyn",
+      "image": "https://s3.r29static.com/bin/entry/863/720x864,85/2160316/image.webp",
+      "clicked": false
     }
 ]

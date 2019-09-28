@@ -1,0 +1,16 @@
+h1 {
+  text-transform: uppercase;
+  font-size: 1em;
+  background-color: rgb(60,60,60,.4);
+  color: whitesmoke;
+  overflow: hidden;
+  display: inline;
+  padding: 15px;
+}
+
+.jumbotron {
+  height: 250px;
+  background-image: url('https://wallpaperaccess.com/full/457348.jpg');
+  background-size: cover;
+}
+

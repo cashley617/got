@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import Nav from "./components/Nav";
-import Jumbotron from "./components/Jumbotron";
-import FriendCard from "./components/FriendCard";
+import Header from "./components/Header";
+import Characters from "./components/Characters";
 import Footer from "./components/Footer";
 import characters from "./characters.json";
 import "./App.css";
 
+// Setting state
 export default class App extends Component {
-  // Setting the initial state of things
   state = {
     characters,
     clicked: [],
@@ -15,12 +15,17 @@ export default class App extends Component {
     highscore: 0
   };
 
-  // sort the characters function
-  sortCharacters = () => {
-    this.state.characters.sort((a, b) => { return 0.5 - Math.random() });
+  // Function to reset the score upon a loss
+  reset = () => {
+    alert("You know nothing, Jon Snow");
+    this.setHighScore();
+    this.setState({
+      clicked: [],
+      score: 0
+    })
   };
 
-  // set the high score
+  // Function to set the high score 
   setHighScore = () => {
     if (this.state.score > this.state.highscore) {
       this.setState({
@@ -29,60 +34,49 @@ export default class App extends Component {
     }
   };
 
-  // reset function to reset things when the game is lost
-  resetStuff = () => {
-    this.setHighScore();
-    this.setState({
-      clicked: [],
-      score: 0
-    })
+  // Function to sort the character cards
+  sortCharacters = () => {
+    this.state.characters.sort((a, b) => { return 0.5 - Math.random() });
   };
 
-  // character click event
-  characterClick = event => {
-    // grab the id of the clicked character
-    const currentChar = event.target.id;
-    // check to see if that character has been clicked or not, are they in the state array or not?
-    const isClicked = this.state.clicked.indexOf(currentChar) > -1;
+  // Click event
+  clickCard = event => {
+    const currentCard = event.target.id;
+    const isClicked = this.state.clicked.indexOf(currentCard) > -1;
 
-    // if that character is clicked, end the game, reset the score
+    // If character was clicked, end game + reset score + log high score
     if (isClicked) {
       this.sortCharacters();
-      this.resetStuff();
+      this.reset();
     } else {
-      // we have to update the score, sort the cards
+      // Update score
       this.sortCharacters();
-      this.setState({
-        // Lance showed me this trick with the concat
-        clicked: this.state.clicked.concat(currentChar),
-        // increase the score
-        score: this.state.score + 1
-      },
-        // if user gets to all 12, shuffle the cards and reset the game
+      this.setState(
+        {
+          clicked: this.state.clicked.concat(currentCard),
+          score: this.state.score + 1
+        },
         () => {
           if (this.state.score === 12) {
             this.sortCharacters();
-            this.resetStuff();
+            this.reset();
           }
-        });
+        }
+      );
     }
   };
 
-
-  // Map over this.state.friends and render a FriendCard component for each friend object
+  // Render Method
   render() {
     return (
-      <div className='App'>
-        <Nav
-          highscore={this.state.highscore}
-          score={this.state.score}
-        />
-        <Jumbotron />
-        <div className='container'>
-          <div className='row'>
+      <div className="App">
+        <Nav highscore={this.state.highscore} score={this.state.score} />
+        <Header />
+        <div className="container">
+          <div className="row">
             {this.state.characters.map(character => (
-              <FriendCard
-                characterClick={this.characterClick}
+              <Characters
+                clickCard={this.clickCard}
                 id={character.id}
                 key={character.id}
                 name={character.name}
@@ -95,5 +89,5 @@ export default class App extends Component {
       </div>
     );
   }
-}
+};
 
