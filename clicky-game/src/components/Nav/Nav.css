@@ -1,0 +1,26 @@
+
+nav {
+  background-color: #0e1111;
+  color: white;
+  font-size: 2em;
+}
+
+.nav-wrapper {
+  width: 80%;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.left {
+  position: relative;
+  float: left;
+  font-size: 25px;
+}
+
+.right {
+  position: relative;
+  float: right;
+  font-size: 25px;
+}

@@ -7,7 +7,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #000000;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -17,6 +17,10 @@
   color: white;
 }
 
-.App-link {
+/* .App-link {
   color: #09d3ac;
+} */
+
+.card {
+  background-color: #000000;
 }
